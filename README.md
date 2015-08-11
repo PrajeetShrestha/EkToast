@@ -17,8 +17,8 @@ And add following code:
         NSLog(@"Toast Completed");
     }];
     
-    ```
+```
     
 You can simply change the position of toast by modifying it's position property. 
 We have three position options here
-ToastPositionTop , ToastPositionCenter, ToastPositionBottom
+```ToastPositionTop , ToastPositionCenter, ToastPositionBottom```
