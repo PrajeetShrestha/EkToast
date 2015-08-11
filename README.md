@@ -16,4 +16,5 @@ And add following code:
     [toast show:^{
         NSLog(@"Toast Completed");
     }];
-    ```
+    
+   
