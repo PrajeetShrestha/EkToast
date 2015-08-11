@@ -23,3 +23,8 @@ You can simply change the position of toast by modifying it's position property.
 
 We have three position options here
 ```ToastPositionTop , ToastPositionCenter, ToastPositionBottom```
+
+#Why EKToast?
+1. You can modify most of toast view property through interface builder.
+2. It has a completion block to trigger indication that toast view has completed loading.
+
