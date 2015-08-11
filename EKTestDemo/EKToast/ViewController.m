@@ -25,7 +25,7 @@
     // Dispose of any resources that can be recreated.
 }
 - (IBAction)show:(id)sender {
-    EKToast *toast = [[EKToast alloc]initWithMessage:@"Hello World"];
+    EKToast *toast = [[EKToast alloc]initWithMessage:@"Hello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello WorldHello World"];
     toast.delay = 3.0f;
     toast.shouldAutoDestruct = NO;
     toast.position = ToastPositionBottom;

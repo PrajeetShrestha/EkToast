@@ -14,7 +14,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dpo-PN-kBJ">
                     <rect key="frame" x="0.0" y="0.0" width="397" height="139"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close-button.png" translatesAutoresizingMaskIntoConstraints="NO" id="rpY-h2-3KU">
+                        <imageView userInteractionEnabled="NO" alpha="0.59999999999999964" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="close-button.png" translatesAutoresizingMaskIntoConstraints="NO" id="rpY-h2-3KU">
                             <rect key="frame" x="369" y="60" width="20" height="20"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="20" id="R40-9e-iFe"/>

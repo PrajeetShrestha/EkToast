@@ -9,6 +9,7 @@
 #import "EKToast.h"
 @interface EKToast()
 @property (nonatomic, copy) void (^completion)(void);
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *trailingSpace;
 @end
 @implementation EKToast
 
@@ -70,6 +71,7 @@
                                                 action:@selector(removeOnTap:)];
         [self addGestureRecognizer:singleFingerTap];
         self.closeImage.hidden = NO;
+        self.trailingSpace.constant = 36;
     }
 }
 
