@@ -27,7 +27,7 @@
 - (IBAction)show:(id)sender {
     EKToast *toast = [[EKToast alloc]initWithMessage:@"Hello World"];
     toast.delay = 3.0f;
-    toast.shouldAutoDestruct = YES;
+    toast.shouldAutoDestruct = NO;
     toast.position = ToastPositionBottom;
     [toast show:^{
         NSLog(@"Toast Completed");

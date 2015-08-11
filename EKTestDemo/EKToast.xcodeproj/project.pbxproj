@@ -17,6 +17,7 @@
 		25A81E3D1B7A006D00E6D14F /* EKToastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A81E3C1B7A006D00E6D14F /* EKToastTests.m */; };
 		25A81E561B7A0F7A00E6D14F /* EKToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A81E541B7A0F7A00E6D14F /* EKToast.m */; };
 		25A81E571B7A0F7A00E6D14F /* EKToast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25A81E551B7A0F7A00E6D14F /* EKToast.xib */; };
+		25A81E591B7A1EEB00E6D14F /* close-button.png in Resources */ = {isa = PBXBuildFile; fileRef = 25A81E581B7A1EEB00E6D14F /* close-button.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +48,7 @@
 		25A81E531B7A0F7A00E6D14F /* EKToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKToast.h; sourceTree = "<group>"; };
 		25A81E541B7A0F7A00E6D14F /* EKToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKToast.m; sourceTree = "<group>"; };
 		25A81E551B7A0F7A00E6D14F /* EKToast.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EKToast.xib; sourceTree = "<group>"; };
+		25A81E581B7A1EEB00E6D14F /* close-button.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "close-button.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -89,8 +91,8 @@
 			isa = PBXGroup;
 			children = (
 				25A81E211B7A006D00E6D14F /* AppDelegate.h */,
-				25A81E521B7A0F7A00E6D14F /* EKToast */,
 				25A81E221B7A006D00E6D14F /* AppDelegate.m */,
+				25A81E521B7A0F7A00E6D14F /* EKToast */,
 				25A81E271B7A006D00E6D14F /* ViewController.h */,
 				25A81E281B7A006D00E6D14F /* ViewController.m */,
 				25A81E2A1B7A006D00E6D14F /* Main.storyboard */,
@@ -133,6 +135,7 @@
 			children = (
 				25A81E531B7A0F7A00E6D14F /* EKToast.h */,
 				25A81E541B7A0F7A00E6D14F /* EKToast.m */,
+				25A81E581B7A1EEB00E6D14F /* close-button.png */,
 				25A81E551B7A0F7A00E6D14F /* EKToast.xib */,
 			);
 			path = EKToast;
@@ -218,6 +221,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				25A81E591B7A1EEB00E6D14F /* close-button.png in Resources */,
 				25A81E2C1B7A006D00E6D14F /* Main.storyboard in Resources */,
 				25A81E311B7A006D00E6D14F /* LaunchScreen.xib in Resources */,
 				25A81E2E1B7A006D00E6D14F /* Images.xcassets in Resources */,

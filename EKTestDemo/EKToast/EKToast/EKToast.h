@@ -35,6 +35,9 @@ typedef enum EKToastPosition {
 //Determines if toast should autoDestruct after set duration default is YES. If autoDestruct is not set the toast will be removed on touch gesture.
 @property (nonatomic) BOOL shouldAutoDestruct;
 
+@property (nonatomic) BOOL shouldCornerRadius;
+@property (weak, nonatomic) IBOutlet UIImageView *closeImage;
+
 //Method to initialize EKToast
 - (instancetype)initWithMessage:(NSString *)message;
 

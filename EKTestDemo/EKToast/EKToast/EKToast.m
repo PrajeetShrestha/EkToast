@@ -24,7 +24,9 @@
         self.duration = 0.5f;
         self.delay = 1.6f;
         self.shouldAutoDestruct = YES;
-        [self setShadow:self];
+        self.shouldCornerRadius = NO;
+        self.closeImage.hidden = YES;
+        self.backgroundColor = [UIColor clearColor];
         if (message == nil) {
             return nil;
         }
@@ -48,6 +50,11 @@
 
     [self addConstraintWithRespectToSuperView:self];
 
+    if (self.shouldCornerRadius) {
+        [self setUpBackgroundView];
+    }
+        //[self setShadow:self];
+
     //Trigger auto removal of toast
     if (self.shouldAutoDestruct) {
         [UIView animateWithDuration:self.duration delay:self.delay options:UIViewAnimationOptionCurveLinear animations:^{
@@ -62,6 +69,7 @@
         [[UITapGestureRecognizer alloc] initWithTarget:self
                                                 action:@selector(removeOnTap:)];
         [self addGestureRecognizer:singleFingerTap];
+        self.closeImage.hidden = NO;
     }
 }
 
