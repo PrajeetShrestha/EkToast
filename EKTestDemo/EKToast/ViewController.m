@@ -7,6 +7,7 @@
 //
 
 #import "ViewController.h"
+#import "EKToast.h"
 
 @interface ViewController ()
 
@@ -22,6 +23,15 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+- (IBAction)show:(id)sender {
+    EKToast *toast = [[EKToast alloc]initWithMessage:@"Hello World"];
+    toast.delay = 3.0f;
+    toast.shouldAutoDestruct = YES;
+    toast.position = ToastPositionBottom;
+    [toast show:^{
+        NSLog(@"Toast Completed");
+    }];
 }
 
 @end

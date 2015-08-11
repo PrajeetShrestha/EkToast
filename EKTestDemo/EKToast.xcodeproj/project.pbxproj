@@ -15,6 +15,8 @@
 		25A81E2E1B7A006D00E6D14F /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 25A81E2D1B7A006D00E6D14F /* Images.xcassets */; };
 		25A81E311B7A006D00E6D14F /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25A81E2F1B7A006D00E6D14F /* LaunchScreen.xib */; };
 		25A81E3D1B7A006D00E6D14F /* EKToastTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A81E3C1B7A006D00E6D14F /* EKToastTests.m */; };
+		25A81E561B7A0F7A00E6D14F /* EKToast.m in Sources */ = {isa = PBXBuildFile; fileRef = 25A81E541B7A0F7A00E6D14F /* EKToast.m */; };
+		25A81E571B7A0F7A00E6D14F /* EKToast.xib in Resources */ = {isa = PBXBuildFile; fileRef = 25A81E551B7A0F7A00E6D14F /* EKToast.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +44,9 @@
 		25A81E361B7A006D00E6D14F /* EKToastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = EKToastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		25A81E3B1B7A006D00E6D14F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		25A81E3C1B7A006D00E6D14F /* EKToastTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = EKToastTests.m; sourceTree = "<group>"; };
+		25A81E531B7A0F7A00E6D14F /* EKToast.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EKToast.h; sourceTree = "<group>"; };
+		25A81E541B7A0F7A00E6D14F /* EKToast.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EKToast.m; sourceTree = "<group>"; };
+		25A81E551B7A0F7A00E6D14F /* EKToast.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EKToast.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				25A81E211B7A006D00E6D14F /* AppDelegate.h */,
+				25A81E521B7A0F7A00E6D14F /* EKToast */,
 				25A81E221B7A006D00E6D14F /* AppDelegate.m */,
 				25A81E271B7A006D00E6D14F /* ViewController.h */,
 				25A81E281B7A006D00E6D14F /* ViewController.m */,
@@ -120,6 +126,16 @@
 				25A81E3B1B7A006D00E6D14F /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		25A81E521B7A0F7A00E6D14F /* EKToast */ = {
+			isa = PBXGroup;
+			children = (
+				25A81E531B7A0F7A00E6D14F /* EKToast.h */,
+				25A81E541B7A0F7A00E6D14F /* EKToast.m */,
+				25A81E551B7A0F7A00E6D14F /* EKToast.xib */,
+			);
+			path = EKToast;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -205,6 +221,7 @@
 				25A81E2C1B7A006D00E6D14F /* Main.storyboard in Resources */,
 				25A81E311B7A006D00E6D14F /* LaunchScreen.xib in Resources */,
 				25A81E2E1B7A006D00E6D14F /* Images.xcassets in Resources */,
+				25A81E571B7A0F7A00E6D14F /* EKToast.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -223,6 +240,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				25A81E261B7A006D00E6D14F /* EKToast.xcdatamodeld in Sources */,
+				25A81E561B7A0F7A00E6D14F /* EKToast.m in Sources */,
 				25A81E231B7A006D00E6D14F /* AppDelegate.m in Sources */,
 				25A81E291B7A006D00E6D14F /* ViewController.m in Sources */,
 				25A81E201B7A006D00E6D14F /* main.m in Sources */,
@@ -422,6 +440,7 @@
 				25A81E421B7A006D00E6D14F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		25A81E431B7A006D00E6D14F /* Build configuration list for PBXNativeTarget "EKToastTests" */ = {
 			isa = XCConfigurationList;
@@ -430,6 +449,7 @@
 				25A81E451B7A006D00E6D14F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 
