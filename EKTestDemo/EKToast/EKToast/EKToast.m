@@ -34,11 +34,11 @@
         if (message == nil) {
             return nil;
         }
-        
-        [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     return self;
 }
+
 - (void)orientationChanged:(NSNotification *)notification{
     [self adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
@@ -50,14 +50,20 @@
         case UIInterfaceOrientationPortrait:
         case UIInterfaceOrientationPortraitUpsideDown:
         {
-            [self reloadViewPosition];
+            if (self) {
+                [self reloadViewPosition];
+            }
+            
         }
             
             break;
         case UIInterfaceOrientationLandscapeLeft:
         case UIInterfaceOrientationLandscapeRight:
         {
-            [self reloadViewPosition];
+            if (self) {
+                [self reloadViewPosition];
+            }
+            
         }
             break;
         case UIInterfaceOrientationUnknown:break;
@@ -100,9 +106,10 @@
         [UIView animateWithDuration:self.duration delay:self.delay options:UIViewAnimationOptionCurveLinear animations:^{
             self.alpha = 0.0f;
         } completion:^(BOOL finished) {
+            completion();
             [self removeFromSuperview];
             window.windowLevel = UIWindowLevelStatusBar - 1;
-            completion();
+            
         }];
     } else {
         UITapGestureRecognizer *singleFingerTap =
@@ -196,5 +203,10 @@
             self.transform = CGAffineTransformMakeScale(1.0, 1.0);
         }];
     }
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end
