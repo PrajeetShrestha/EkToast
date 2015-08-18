@@ -7,8 +7,12 @@
 //
 
 #import "EKToast.h"
-@interface EKToast()
+@interface EKToast() {
+    NSLayoutConstraint *centerVerticallyToSuperView;
+    NSLayoutConstraint *centerHorizontallyToSuperView;
+}
 @property (nonatomic, copy) void (^completion)(void);
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *trailingSpace;
 @end
 @implementation EKToast
 
@@ -24,12 +28,50 @@
         self.duration = 0.5f;
         self.delay = 1.6f;
         self.shouldAutoDestruct = YES;
-        [self setShadow:self];
+        self.shouldCornerRadius = NO;
+        self.closeImage.hidden = YES;
+        self.backgroundColor = [UIColor clearColor];
         if (message == nil) {
             return nil;
         }
+
+        [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     }
     return self;
+}
+- (void)orientationChanged:(NSNotification *)notification{
+    [self adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
+}
+
+- (void) adjustViewsForOrientation:(UIInterfaceOrientation) orientation {
+
+    switch (orientation)
+    {
+        case UIInterfaceOrientationPortrait:
+        case UIInterfaceOrientationPortraitUpsideDown:
+        {
+            [self reloadViewPosition];
+        }
+
+            break;
+        case UIInterfaceOrientationLandscapeLeft:
+        case UIInterfaceOrientationLandscapeRight:
+        {
+            [self reloadViewPosition];
+        }
+            break;
+        case UIInterfaceOrientationUnknown:break;
+    }
+}
+
+- (void)reloadViewPosition {
+    UIView *view = self;
+    CGFloat halfHeight = view.superview.frame.size.height/2;
+    if (self.position == ToastPositionBottom) {
+        centerVerticallyToSuperView.constant = +halfHeight - view.bounds.size.height/2;
+    } else if(self.position == ToastPositionTop) {
+        centerVerticallyToSuperView.constant = -halfHeight + view.bounds.size.height/2;
+    }
 }
 
 - (void)show:(void (^)(void))completion {
@@ -48,6 +90,11 @@
 
     [self addConstraintWithRespectToSuperView:self];
 
+    if (self.shouldCornerRadius) {
+        [self setUpBackgroundView];
+    }
+        //[self setShadow:self];
+
     //Trigger auto removal of toast
     if (self.shouldAutoDestruct) {
         [UIView animateWithDuration:self.duration delay:self.delay options:UIViewAnimationOptionCurveLinear animations:^{
@@ -62,6 +109,8 @@
         [[UITapGestureRecognizer alloc] initWithTarget:self
                                                 action:@selector(removeOnTap:)];
         [self addGestureRecognizer:singleFingerTap];
+        self.closeImage.hidden = NO;
+        self.trailingSpace.constant = 36;
     }
 }
 
@@ -102,7 +151,7 @@
                                                                        metrics:nil
                                                                          views:viewsDictionary];
 
-    NSLayoutConstraint *centerVerticallyToSuperView = [NSLayoutConstraint constraintWithItem:view
+    centerVerticallyToSuperView = [NSLayoutConstraint constraintWithItem:view
                                                                                    attribute:NSLayoutAttributeCenterY
                                                                                    relatedBy:NSLayoutRelationEqual
                                                                                       toItem:view.superview
@@ -111,7 +160,7 @@
                                                                                     constant:0
                                                        ];
 
-    NSLayoutConstraint *centerHorizontallyToSuperView = [NSLayoutConstraint constraintWithItem:view
+    centerHorizontallyToSuperView = [NSLayoutConstraint constraintWithItem:view
                                                                                      attribute:NSLayoutAttributeCenterX
                                                                                      relatedBy:NSLayoutRelationEqual
                                                                                         toItem:view.superview
