@@ -34,30 +34,36 @@
         if (message == nil) {
             return nil;
         }
-
-        [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     }
+    [[NSNotificationCenter defaultCenter] addObserver:self  selector:@selector(orientationChanged:)    name:UIDeviceOrientationDidChangeNotification  object:nil];
     return self;
 }
+
 - (void)orientationChanged:(NSNotification *)notification{
     [self adjustViewsForOrientation:[[UIApplication sharedApplication] statusBarOrientation]];
 }
 
 - (void) adjustViewsForOrientation:(UIInterfaceOrientation) orientation {
-
+    
     switch (orientation)
     {
         case UIInterfaceOrientationPortrait:
         case UIInterfaceOrientationPortraitUpsideDown:
         {
-            [self reloadViewPosition];
+            if (self) {
+                [self reloadViewPosition];
+            }
+            
         }
-
+            
             break;
         case UIInterfaceOrientationLandscapeLeft:
         case UIInterfaceOrientationLandscapeRight:
         {
-            [self reloadViewPosition];
+            if (self) {
+                [self reloadViewPosition];
+            }
+            
         }
             break;
         case UIInterfaceOrientationUnknown:break;
@@ -87,22 +93,26 @@
     if (self.position == ToastPositionTop) {
         window.windowLevel = UIWindowLevelStatusBar + 1;
     }
-
+    
     [self addConstraintWithRespectToSuperView:self];
-
+    
     if (self.shouldCornerRadius) {
         [self setUpBackgroundView];
     }
-        //[self setShadow:self];
-
+    //[self setShadow:self];
+    
     //Trigger auto removal of toast
     if (self.shouldAutoDestruct) {
         [UIView animateWithDuration:self.duration delay:self.delay options:UIViewAnimationOptionCurveLinear animations:^{
             self.alpha = 0.0f;
         } completion:^(BOOL finished) {
+            if (completion != nil) {
+               completion();
+            }
+
             [self removeFromSuperview];
             window.windowLevel = UIWindowLevelStatusBar - 1;
-            completion();
+            
         }];
     } else {
         UITapGestureRecognizer *singleFingerTap =
@@ -119,9 +129,12 @@
         self.alpha = 0.0f;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
-        self.completion();
-    }];
+        if(self.completion != nil) {
+                self.completion();
+        }
 
+    }];
+    
 }
 
 - (void)setUpBackgroundView {
@@ -136,7 +149,7 @@
     } else {
         view.layer.shadowOffset = CGSizeMake(2, 2);
     }
-
+    
     view.layer.shadowRadius = 5;
     view.layer.shadowOpacity = 0.8;
 }
@@ -145,36 +158,36 @@
     self.translatesAutoresizingMaskIntoConstraints = NO;
     NSDictionary *viewsDictionary = @{@"View":view};
     NSString *widthFormat = [NSString stringWithFormat:@"H:|-%d-[View]-%d-|",(int)self.horizontalOffset,(int)self.horizontalOffset];
-
+    
     NSArray *widthConstraint = [NSLayoutConstraint constraintsWithVisualFormat:widthFormat
                                                                        options:0
                                                                        metrics:nil
                                                                          views:viewsDictionary];
-
+    
     centerVerticallyToSuperView = [NSLayoutConstraint constraintWithItem:view
-                                                                                   attribute:NSLayoutAttributeCenterY
-                                                                                   relatedBy:NSLayoutRelationEqual
-                                                                                      toItem:view.superview
-                                                                                   attribute:NSLayoutAttributeCenterY
-                                                                                  multiplier:1
-                                                                                    constant:0
-                                                       ];
-
+                                                               attribute:NSLayoutAttributeCenterY
+                                                               relatedBy:NSLayoutRelationEqual
+                                                                  toItem:view.superview
+                                                               attribute:NSLayoutAttributeCenterY
+                                                              multiplier:1
+                                                                constant:0
+                                   ];
+    
     centerHorizontallyToSuperView = [NSLayoutConstraint constraintWithItem:view
-                                                                                     attribute:NSLayoutAttributeCenterX
-                                                                                     relatedBy:NSLayoutRelationEqual
-                                                                                        toItem:view.superview
-                                                                                     attribute:NSLayoutAttributeCenterX
-                                                                                    multiplier:1
-                                                                                      constant:0
-                                                         ];
+                                                                 attribute:NSLayoutAttributeCenterX
+                                                                 relatedBy:NSLayoutRelationEqual
+                                                                    toItem:view.superview
+                                                                 attribute:NSLayoutAttributeCenterX
+                                                                multiplier:1
+                                                                  constant:0
+                                     ];
     [view.superview addConstraint:centerVerticallyToSuperView];
     [view.superview addConstraint:centerHorizontallyToSuperView];
     [view.superview addConstraints:widthConstraint];
     [view.superview layoutIfNeeded];
-
+    
     CGFloat halfHeight = view.superview.frame.size.height/2;
-
+    
     //Animate according to position Top/Bottom/Center
     if (self.position == ToastPositionBottom) {
         centerVerticallyToSuperView.constant = +halfHeight + view.bounds.size.height/2;
@@ -196,5 +209,10 @@
             self.transform = CGAffineTransformMakeScale(1.0, 1.0);
         }];
     }
+}
+
+- (void) dealloc
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
 }
 @end
